@@ -258,4 +258,4 @@ async def cb_product(call: CallbackQuery):
 
     _id, city, name, variant, price, desc = p
     text = (
-        f"📦 {name
+        f"📦 {name}
