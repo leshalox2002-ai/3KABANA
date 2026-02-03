@@ -527,9 +527,17 @@ async def start_web_server():
 async def start_bot():
     if not BOT_TOKEN:
         raise RuntimeError("BOT_TOKEN не задан в Variables.")
-    bot = Bot(BOT_TOKEN, parse_mode="HTML")
+
+    from aiogram.client.default import DefaultBotProperties
+    from aiogram.enums import ParseMode
+
+    bot = Bot(
+        BOT_TOKEN,
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML)
+    )
     dp = Dispatcher()
     dp.include_router(router)
+
     logging.info("✅ POLLING STARTED")
     await dp.start_polling(bot)
 
